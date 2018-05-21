@@ -1,12 +1,54 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.views.generic import DetailView, ListView, RedirectView, UpdateView
-
+from django.shortcuts import redirect
+from .models import Student, Management, Teacher, Parent
 from .models import User
+
+
+@login_required
+def enter_view(request):
+    if request.user.user_type == "STD":
+        return redirect(Student)
+    elif request.user.user_type == "TCH":
+        return redirect(Teacher)
+    elif request.user.user_type == "PRT":
+        return redirect(Parent)
+    else:
+        return redirect(Management)
 
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
+    # These next two lines tell the view to index lookups by username
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+
+class StudentDetailView(LoginRequiredMixin, DetailView):
+    model = Student
+    # These next two lines tell the view to index lookups by username
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+
+class TeacherDetailView(LoginRequiredMixin, DetailView):
+    model = Teacher
+    # These next two lines tell the view to index lookups by username
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+
+class ParentDetailView(LoginRequiredMixin, DetailView):
+    model = Parent
+    # These next two lines tell the view to index lookups by username
+    slug_field = 'username'
+    slug_url_kwarg = 'username'
+
+
+class ManagementDetailView(LoginRequiredMixin, DetailView):
+    model = Management
     # These next two lines tell the view to index lookups by username
     slug_field = 'username'
     slug_url_kwarg = 'username'

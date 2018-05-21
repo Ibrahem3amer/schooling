@@ -8,8 +8,19 @@ Local settings for schooling project.
 - Add Django Debug Toolbar
 - Add django-extensions as app
 """
-
+import os
+from os.path import abspath, dirname
 from .base import *  # noqa
+
+BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+# DATABASE
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # DEBUG
 # ------------------------------------------------------------------------------

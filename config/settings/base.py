@@ -38,6 +38,7 @@ DJANGO_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # Useful template tags:
     # 'django.contrib.humanize',
 
@@ -49,6 +50,7 @@ THIRD_PARTY_APPS = [
     'allauth',  # registration
     'allauth.account',  # registration
     'allauth.socialaccount',  # registration
+
 ]
 
 # Apps specific for this project go here.
@@ -261,7 +263,7 @@ SOCIALACCOUNT_ADAPTER = 'schooling.users.adapters.SocialAccountAdapter'
 # Custom user app defaults
 # Select the correct user model
 AUTH_USER_MODEL = 'users.User'
-LOGIN_REDIRECT_URL = 'users:redirect'
+LOGIN_REDIRECT_URL = 'enter'
 LOGIN_URL = 'account_login'
 
 # SLUGLIFIER
